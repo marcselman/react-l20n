@@ -1,0 +1,38 @@
+{
+  "name": "react-l20n",
+  "version": "0.0.1",
+  "description": "Mozilla's L20n localization framework for React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcselman/react-l20n.git"
+  },
+  "keywords": [
+    "l20n",
+    "react"
+  ],
+  "author": "Marc Selman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcselman/react-l20n/issues"
+  },
+  "homepage": "https://github.com/marcselman/react-l20n#readme",
+  "dependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babel-register": "^6.11.6",
+    "express": "^4.14.0",
+    "l20n": "^4.0.0-alpha.3",
+    "raw-loader": "^0.5.1",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
