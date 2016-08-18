@@ -18,7 +18,8 @@ class L20n
 		}
 
 		const errors = ctx.addMessages(ftl);
-		if (errors.length) {
+		if (errors.length)
+		{
 			console.log(errors);
 		}
 	}
