@@ -40,8 +40,11 @@ class L20n
 		}
 
 		var template = ctx.messages.get(key);
-		var [ messages, errors2 ] = ctx.format(template, props);
-		return messages;		
+		var [ message, errors2 ] = ctx.format(template, props);
+
+		return message
+			.replace(String.fromCharCode(8296), '')
+			.replace(String.fromCharCode(8297), '');
 	}
 }
 
