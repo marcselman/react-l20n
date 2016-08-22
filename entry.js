@@ -14,7 +14,7 @@ export default class Entry extends React.Component
 		return (
 			<div>
 				<h1>App { L20n.get('product-name') }</h1>
-				<h2>{ L20n.get('people', { count: 1 }, 'fr') }</h2>
+				<h2>{ L20n.get('people', { count: 2 }, 'fr') }</h2>
 				<Label />
 			</div>
 		)
