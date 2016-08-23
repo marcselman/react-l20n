@@ -25,7 +25,7 @@ export default class Entry extends React.Component
 					{ L20n.get('product-name') }
 				</L20n.Element>
 				<h1>App { L20n.get('product-name') }</h1>
-				<h2>{ L20n.get('people', { count: 1 }, 'fr') }</h2>
+				<h2>{ L20n.get('people', { count: 2 }, 'fr') }</h2>
 				<Label />
 				<button onClick={ () => this.switchLocale() }>Switch</button>
 
