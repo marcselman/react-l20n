@@ -1,10 +1,11 @@
 {
-  "name": "react-l20n",
-  "version": "0.0.1",
+  "name": "react-l20n-u",
+  "version": "0.0.2",
   "description": "Mozilla's L20n localization framework for React",
-  "main": "index.js",
+  "main": "./build/react-l20n.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel ./src/react-l20n.js -o ./build/react-l20n.js",
+    "publish": "npm version patch && npm publish ."
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,10 @@
   },
   "homepage": "https://github.com/marcselman/react-l20n#readme",
   "dependencies": {
+    "react": "^15.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.5",
     "babel-polyfill": "^6.13.0",
@@ -30,7 +35,6 @@
     "express": "^4.14.0",
     "l20n": "^4.0.0-alpha.3",
     "raw-loader": "^0.5.1",
-    "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.14.1"

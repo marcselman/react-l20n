@@ -1,3 +1,8 @@
+// react-l20n.js
+// version: 0.0.1
+// author: Marc Selman
+// license: MIT
+
 import React from 'react'
 import 'l20n'
 
