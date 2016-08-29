@@ -1,11 +1,10 @@
 {
   "name": "react-l20n-u",
-  "version": "0.0.5",
+  "version": "0.0.4",
   "description": "Mozilla's L20n localization framework for React",
   "main": "./build/react-l20n.js",
   "scripts": {
-    "build": "babel ./src/react-l20n.js -o ./build/react-l20n.js",
-    "publish": "npm version patch && npm publish ."
+    "build": "babel ./src/react-l20n.js -o ./build/react-l20n.js"
   },
   "repository": {
     "type": "git",

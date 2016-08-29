@@ -1,5 +1,5 @@
 import React from 'react'
-import L20n from '../react-l20n'
+import L20n from '../src/react-l20n'
 
 export default class Label extends React.Component
 {

@@ -1,5 +1,5 @@
 import React from 'react'
-import L20n from './react-l20n'
+import L20n from './src/react-l20n'
 import Label from './components/label'
 
 L20n.defaultLocale = 'nl'
