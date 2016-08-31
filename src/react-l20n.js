@@ -1,5 +1,5 @@
 // react-l20n.js
-// version: 0.0.1
+// version: 0.0.11
 // author: Marc Selman
 // license: MIT
 
@@ -50,7 +50,11 @@ class L20n
 			return this.getRaw(key, props, this.defaultLocale);
 		}
 
-		var [ message, errors2 ] = ctx.format(template, props);
+		var [ message, errors ] = ctx.format(template, props);
+
+		if (errors.length > 0) {
+			return undefined;
+		}
 
 		return message
 			.replace(String.fromCharCode(8296), '')
@@ -79,53 +83,50 @@ class L20n
 
 		return ctx;
 	}
-	get Element()
+}
+
+export class L20nElement extends React.Component
+{
+	constructor(props)
 	{
-		class Element extends React.Component
-		{
-			constructor(props)
-			{
-				super(props)
+		super(props)
+	}
 
-				this.attrs = Object.assign({}, props);
-				delete this.attrs['id']
-				delete this.attrs['renderAs']
-				delete this.attrs['locale']
+	render()
+	{
+		this.attrs = Object.assign({}, this.props);
+		delete this.attrs['id']
+		delete this.attrs['renderAs']
+		delete this.attrs['locale']
+		delete this.attrs['elementRef']
 
-				var value = l20n.getRaw(this.props.id, {}, this.props.locale)
-				if (value) {
-					this.attrs['defaultValue'] = value
-				}
+		var value = l20n.getRaw(this.props.id, {}, this.props.locale)
+		if (value) {
+			this.attrs['defaultValue'] = value
+		}
 
-				var ctx = l20n.getContext(this.props.locale);
-				if (ctx) {
-					var template = ctx.messages.get(this.props.id);
-					if (template && template.traits) {
-						var attributes = template.traits.filter(t => t.key.ns == 'html').map(t => [t.key.name, t.val]);
-						attributes.forEach(a => {
-							this.attrs[a[0]] = a[1];
-						})
-					}
-				}
-			}
-
-			render()
-			{
-				return (
-					<this.props.renderAs {...this.attrs}>{ this.props.children }</this.props.renderAs>
-				)
+		var ctx = l20n.getContext(this.props.locale);
+		if (ctx) {
+			var template = ctx.messages.get(this.props.id);
+			if (template && template.traits) {
+				var attributes = template.traits.filter(t => t.key.ns == 'html').map(t => [t.key.name, t.val]);
+				attributes.forEach(a => {
+					this.attrs[a[0]] = a[1];
+				})
 			}
 		}
 
-		Element.propTypes = {
-			id: React.PropTypes.string.isRequired,
-			renderAs: React.PropTypes.string.isRequired,
-			locale: React.PropTypes.string
-		};
-
-		return Element;
+		return (
+			<this.props.renderAs ref={this.props.elementRef} {...this.attrs}>{ this.props.children }</this.props.renderAs>
+		)
 	}
 }
+
+L20nElement.propTypes = {
+	id: React.PropTypes.string.isRequired,
+	renderAs: React.PropTypes.string.isRequired,
+	locale: React.PropTypes.string
+};
 
 var l20n = new L20n
 

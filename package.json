@@ -1,10 +1,10 @@
 {
   "name": "react-l20n-u",
-  "version": "0.0.4",
+  "version": "0.0.11",
   "description": "Mozilla's L20n localization framework for React",
   "main": "./build/react-l20n.js",
   "scripts": {
-    "build": "babel ./src/react-l20n.js -o ./build/react-l20n.js"
+    "build": "babel ./src/react-l20n.js --presets es2015 -o ./build/react-l20n.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/marcselman/react-l20n#readme",
   "dependencies": {
+    "l20n": "^4.0.0-alpha.3",
     "react": "^15.3.0"
   },
   "devDependencies": {
@@ -32,7 +33,6 @@
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.11.6",
     "express": "^4.14.0",
-    "l20n": "^4.0.0-alpha.3",
     "raw-loader": "^0.5.1",
     "react-dom": "^15.3.0",
     "webpack": "^1.13.2",

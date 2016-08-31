@@ -1,5 +1,5 @@
 import React from 'react'
-import L20n from './src/react-l20n'
+import L20n, { L20nElement } from './src/react-l20n'
 import Label from './components/label'
 
 L20n.defaultLocale = 'nl'
@@ -15,21 +15,18 @@ hello			= Bonjoir, World!
 export default class Entry extends React.Component
 {
 	switchLocale() {
+		console.info(this.element.value)
 		L20n.defaultLocale = 'fr'
 		this.forceUpdate()
 	}
 	render() {
 		return (
 			<div>
-				<L20n.Element id="login-input" renderAs="p">
-					{ L20n.get('product-name') }
-				</L20n.Element>
 				<h1>App { L20n.get('product-name') }</h1>
 				<h2>{ L20n.get('people', { count: 2 }, 'fr') }</h2>
-				<Label />
-				<button onClick={ () => this.switchLocale() }>Switch</button>
+				<button ref="ja" onClick={ () => this.switchLocale() }>Switch</button>
 
-				<L20n.Element id="login-input" renderAs="input" />
+				<L20nElement onChange={ () => this.forceUpdate() } id="login-input" elementRef={ (e) => { this.element = e } } renderAs="input" />
 			</div>
 		)
 	}

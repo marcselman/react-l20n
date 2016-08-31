@@ -10,7 +10,7 @@ people			= { PLURAL($count) ->
 	[one]		Een persoon
 	*[other]	{$count} personen
 }
-login-input		= Voorbepaalde waarde
+login-input		=
 	[html/placeholder]		voorbeeld@email.nl
 	[html/aria-label]		Login invoer waarde
 	[html/title]			Typ je login email
