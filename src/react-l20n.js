@@ -54,7 +54,9 @@ class L20n
         // the object expected, so no parameters message, errors can be extracted.
         // This will intercept the attempt by checking if only a string was passed,
         // returning it the usual way.
-		if (props === null && typeof template === "string")
+        if (!template)
+            return undefined;
+		else if (props === null && typeof template === "string")
 		    return this.stripFromBlacklistedChars(template);
 
         var [ message, errors ] = ctx.format(template, props);
