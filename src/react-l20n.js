@@ -50,16 +50,34 @@ class L20n
 			return this.getRaw(key, props, this.defaultLocale);
 		}
 
-		var [ message, errors ] = ctx.format(template, props);
+		// By dependency l20n@4.0.0-beta.1; ctx.format() may return other types than
+        // the object expected, so no parameters message, errors can be extracted.
+        // This will intercept the attempt by checking if only a string was passed,
+        // returning it the usual way.
+		if (props === null && typeof template === "string")
+		    return this.stripFromBlacklistedChars(template);
+
+        var [ message, errors ] = ctx.format(template, props);
 
 		if (errors.length > 0) {
 			return undefined;
 		}
 
-		return message
-			.replace(String.fromCharCode(8296), '')
-			.replace(String.fromCharCode(8297), '')			
+		return this.stripFromBlacklistedChars(message);
 	}
+	/*
+	    Since there are now two call, I made it a member function.
+	 */
+    stripFromBlacklistedChars(message)
+    {
+        const blacklistedCharCodes = [8296, 8297]; // What are these chars? Cannot print them
+
+        blacklistedCharCodes.forEach(charCode => {
+            message = message.replace(String.fromCharCode(charCode), '')
+        });
+
+        return message;
+    }
 	get(key, props, locale = this.defaultLocale)
 	{
 		var message = this.getRaw(key, props, locale)

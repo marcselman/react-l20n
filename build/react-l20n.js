@@ -54,7 +54,7 @@ var L20n = function () {
 	}, {
 		key: 'getRaw',
 		value: function getRaw(key, props) {
-			var locale = arguments.length <= 2 || arguments[2] === undefined ? this.defaultLocale : arguments[2];
+			var locale = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.defaultLocale;
 
 			var ctx = this.contexts.get(locale);
 			if (!ctx) {
@@ -72,24 +72,34 @@ var L20n = function () {
 				return this.getRaw(key, props, this.defaultLocale);
 			}
 
-			var _ctx$format = ctx.format(template, props);
+			if (props === null && typeof template === "string") return this.stripFromBlacklistedChars(template);
 
-			var _ctx$format2 = _slicedToArray(_ctx$format, 2);
-
-			var message = _ctx$format2[0];
-			var errors = _ctx$format2[1];
-
+			var _ctx$format = ctx.format(template, props),
+			    _ctx$format2 = _slicedToArray(_ctx$format, 2),
+			    message = _ctx$format2[0],
+			    errors = _ctx$format2[1];
 
 			if (errors.length > 0) {
 				return undefined;
 			}
 
-			return message.replace(String.fromCharCode(8296), '').replace(String.fromCharCode(8297), '');
+			return this.stripFromBlacklistedChars(message);
+		}
+	}, {
+		key: 'stripFromBlacklistedChars',
+		value: function stripFromBlacklistedChars(message) {
+			var blacklistedCharCodes = [8296, 8297];
+
+			blacklistedCharCodes.forEach(function (charCode) {
+				message = message.replace(String.fromCharCode(charCode), '');
+			});
+
+			return message;
 		}
 	}, {
 		key: 'get',
 		value: function get(key, props) {
-			var locale = arguments.length <= 2 || arguments[2] === undefined ? this.defaultLocale : arguments[2];
+			var locale = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.defaultLocale;
 
 			var message = this.getRaw(key, props, locale);
 			return _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: message } });
@@ -97,7 +107,7 @@ var L20n = function () {
 	}, {
 		key: 'getContext',
 		value: function getContext() {
-			var locale = arguments.length <= 0 || arguments[0] === undefined ? this.defaultLocale : arguments[0];
+			var locale = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.defaultLocale;
 
 			var ctx = this.contexts.get(locale);
 			if (!ctx) {
@@ -123,7 +133,7 @@ var L20nElement = exports.L20nElement = function (_React$Component) {
 	function L20nElement(props) {
 		_classCallCheck(this, L20nElement);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(L20nElement).call(this, props));
+		return _possibleConstructorReturn(this, (L20nElement.__proto__ || Object.getPrototypeOf(L20nElement)).call(this, props));
 	}
 
 	_createClass(L20nElement, [{
