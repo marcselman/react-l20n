@@ -46,24 +46,27 @@ class L20n
 		}
 
 		var template = ctx.messages.get(key);
-		if (typeof template === 'undefined') {
+		if (template != undefined && typeof template === 'object') {
+			template = ctx.format(template, props);
+		}
+
+		if (template == undefined || typeof template === 'undefined') {
 			if (this.fallbackToDefault && ctx.lang != this.defaultLocale) {
 				return this.getRaw(key, props, this.defaultLocale);
 			}
-			else {
-				return undefined;
-			}
-		}
-		else if (typeof template === 'string') return template;
-		else if (template.traits) return undefined;
-
-		var [ message, errors ] = ctx.format(template, props);
-
-		if (errors.length > 0) {
 			return undefined;
 		}
+		else if (typeof template === 'string') return template;
+		else {
+			var [ message, errors ] = formatted;
 
-		return message
+			if (errors.length > 0) {
+				console.log(errors);
+				return undefined;
+			}
+
+			return message
+		}
 	}
 	get(key, props, locale = this.defaultLocale)
 	{

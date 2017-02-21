@@ -1,6 +1,6 @@
 {
   "name": "react-l20n-u",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Mozilla's L20n localization framework for React",
   "main": "./build/react-l20n.js",
   "scripts": {
