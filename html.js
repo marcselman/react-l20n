@@ -10,8 +10,7 @@ export default () => (
 		<title>test</title>
 	</head>
 	<body>
-		<div>
-		</div>
+		<div id="app" />
 		<script type="application/javascript" src="/bundle.js"></script>
 	</body>
 	</html>

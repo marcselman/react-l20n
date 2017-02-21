@@ -1,5 +1,5 @@
 // react-l20n.js
-// version: 0.0.11
+// version: 0.0.12
 // author: Marc Selman
 // license: MIT
 
@@ -46,9 +46,16 @@ class L20n
 		}
 
 		var template = ctx.messages.get(key);
-		if (this.fallbackToDefault && !template && ctx.lang != this.defaultLocale) {
-			return this.getRaw(key, props, this.defaultLocale);
+		if (typeof template === 'undefined') {
+			if (this.fallbackToDefault && ctx.lang != this.defaultLocale) {
+				return this.getRaw(key, props, this.defaultLocale);
+			}
+			else {
+				return undefined;
+			}
 		}
+		else if (typeof template === 'string') return template;
+		else if (template.traits) return undefined;
 
 		var [ message, errors ] = ctx.format(template, props);
 
@@ -57,8 +64,6 @@ class L20n
 		}
 
 		return message
-			.replace(String.fromCharCode(8296), '')
-			.replace(String.fromCharCode(8297), '')			
 	}
 	get(key, props, locale = this.defaultLocale)
 	{

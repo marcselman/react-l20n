@@ -7,8 +7,8 @@ const app = express();
 
 app.get('/', function (req, res) {
 	let Html = require('./html').default;
-	//let componentHTML = renderToStaticMarkup(<Html />);
-	//res.end(`<!DOCTYPE html>${componentHTML}`);
+	let componentHTML = renderToStaticMarkup(<Html />);
+	res.end(`<!DOCTYPE html>${componentHTML}`);
 });
 app.use(express.static('builds'));
 
