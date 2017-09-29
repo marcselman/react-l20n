@@ -4,7 +4,7 @@
   "description": "Mozilla's L20n localization framework for React",
   "main": "./build/react-l20n.js",
   "scripts": {
-    "build": "babel ./src/react-l20n.js --presets es2015 -o ./build/react-l20n.js"
+    "build": "babel ./src/react-l20n.js --presets env -o ./build/react-l20n.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.5",
     "babel-polyfill": "^6.13.0",
-    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.11.6",
     "express": "^4.14.0",

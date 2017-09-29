@@ -90,7 +90,7 @@ var L20n = function () {
 					return undefined;
 				}
 
-				return message;
+				return message.replace(String.fromCharCode(8296), '').replace(String.fromCharCode(8297), '');
 			}
 		}
 	}, {

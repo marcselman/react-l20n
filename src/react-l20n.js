@@ -66,6 +66,8 @@ class L20n
 			}
 
 			return message
+				.replace(String.fromCharCode(8296), '')
+				.replace(String.fromCharCode(8297), '');
 		}
 	}
 	get(key, props, locale = this.defaultLocale)
