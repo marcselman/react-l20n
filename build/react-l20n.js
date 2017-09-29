@@ -79,7 +79,9 @@ var L20n = function () {
 					return this.getRaw(key, props, this.defaultLocale);
 				}
 				return undefined;
-			} else if (typeof template === 'string') return template;else {
+			} else if (typeof template === 'string') {
+				return template.replace(String.fromCharCode(8296), '').replace(String.fromCharCode(8297), '');
+			} else {
 				var _formatted = formatted,
 				    _formatted2 = _slicedToArray(_formatted, 2),
 				    message = _formatted2[0],

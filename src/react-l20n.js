@@ -56,7 +56,9 @@ class L20n
 			}
 			return undefined;
 		}
-		else if (typeof template === 'string') return template;
+		else if (typeof template === 'string') {
+			return template.replace(String.fromCharCode(8296), '').replace(String.fromCharCode(8297), '');
+		}
 		else {
 			var [ message, errors ] = formatted;
 
@@ -65,9 +67,7 @@ class L20n
 				return undefined;
 			}
 
-			return message
-				.replace(String.fromCharCode(8296), '')
-				.replace(String.fromCharCode(8297), '');
+			return message.replace(String.fromCharCode(8296), '').replace(String.fromCharCode(8297), '');
 		}
 	}
 	get(key, props, locale = this.defaultLocale)
