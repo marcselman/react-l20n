@@ -12,7 +12,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // react-l20n.js
-// version: 0.0.12
+// version: 0.0.17
 // author: Marc Selman
 // license: MIT
 
@@ -29,6 +29,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var fsiCharacter = new RegExp(String.fromCharCode(8296), 'g');
+var psiCharacter = new RegExp(String.fromCharCode(8297), 'g');
 
 var L20n = function () {
 	function L20n() {
@@ -80,7 +83,7 @@ var L20n = function () {
 				}
 				return undefined;
 			} else if (typeof template === 'string') {
-				return template.replace(String.fromCharCode(8296), '').replace(String.fromCharCode(8297), '');
+				return template.replace(fsiCharacter, '').replace(psiCharacter, '');
 			} else {
 				var _formatted = formatted,
 				    _formatted2 = _slicedToArray(_formatted, 2),
@@ -92,7 +95,7 @@ var L20n = function () {
 					return undefined;
 				}
 
-				return message.replace(String.fromCharCode(8296), '').replace(String.fromCharCode(8297), '');
+				return message.replace(fsiCharacter, '').replace(psiCharacter, '');
 			}
 		}
 	}, {

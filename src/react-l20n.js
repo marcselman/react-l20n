@@ -1,10 +1,13 @@
 // react-l20n.js
-// version: 0.0.12
+// version: 0.0.17
 // author: Marc Selman
 // license: MIT
 
 import React from 'react'
 import 'l20n'
+
+const fsiCharacter = new RegExp(String.fromCharCode(8296), 'g')
+const psiCharacter = new RegExp(String.fromCharCode(8297), 'g')
 
 class L20n
 {
@@ -41,7 +44,7 @@ class L20n
 			
 			if (!ctx)
 			{
-				return `Locale '${locale}' missing`
+				return `Locale '${ locale }' missing`
 			}
 		}
 
@@ -57,7 +60,7 @@ class L20n
 			return undefined;
 		}
 		else if (typeof template === 'string') {
-			return template.replace(String.fromCharCode(8296), '').replace(String.fromCharCode(8297), '');
+			return template.replace(fsiCharacter, '').replace(psiCharacter, '');
 		}
 		else {
 			var [ message, errors ] = formatted;
@@ -67,7 +70,7 @@ class L20n
 				return undefined;
 			}
 
-			return message.replace(String.fromCharCode(8296), '').replace(String.fromCharCode(8297), '');
+			return message.replace(fsiCharacter, '').replace(psiCharacter, '');
 		}
 	}
 	get(key, props, locale = this.defaultLocale)
