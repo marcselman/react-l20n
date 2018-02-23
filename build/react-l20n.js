@@ -20,6 +20,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 require('l20n');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -181,9 +185,9 @@ var L20nElement = exports.L20nElement = function (_React$Component) {
 }(_react2.default.Component);
 
 L20nElement.propTypes = {
-	id: _react2.default.PropTypes.string.isRequired,
-	renderAs: _react2.default.PropTypes.string.isRequired,
-	locale: _react2.default.PropTypes.string
+	id: _propTypes2.default.string.isRequired,
+	renderAs: _propTypes2.default.string.isRequired,
+	locale: _propTypes2.default.string
 };
 
 var l20n = new L20n();
