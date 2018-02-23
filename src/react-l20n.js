@@ -4,6 +4,7 @@
 // license: MIT
 
 import React from 'react'
+import PropTypes from 'prop-types';
 import 'l20n'
 
 const fsiCharacter = new RegExp(String.fromCharCode(8296), 'g')
@@ -136,9 +137,9 @@ export class L20nElement extends React.Component
 }
 
 L20nElement.propTypes = {
-	id: React.PropTypes.string.isRequired,
-	renderAs: React.PropTypes.string.isRequired,
-	locale: React.PropTypes.string
+	id: PropTypes.string.isRequired,
+	renderAs: PropTypes.string.isRequired,
+	locale: PropTypes.string
 };
 
 var l20n = new L20n

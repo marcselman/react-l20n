@@ -22,6 +22,7 @@
   "homepage": "https://github.com/marcselman/react-l20n#readme",
   "dependencies": {
     "l20n": "^4.0.0-beta.1",
+    "prop-types": "^15.6.0",
     "react": "^15.3.0"
   },
   "devDependencies": {
