@@ -1,10 +1,10 @@
 {
   "name": "react-l20n-u",
-  "version": "0.0.18",
+  "version": "0.1.0",
   "description": "Mozilla's L20n localization framework for React",
   "main": "./build/react-l20n.js",
   "scripts": {
-    "build": "babel ./src/react-l20n.js --presets env -o ./build/react-l20n.js"
+    "build": "./node_modules/.bin/babel ./src/react-l20n.js --presets=@babel/preset-env --out-file ./build/react-l20n.js"
   },
   "repository": {
     "type": "git",
@@ -21,22 +21,24 @@
   },
   "homepage": "https://github.com/marcselman/react-l20n#readme",
   "dependencies": {
-    "l20n": "^4.0.0-beta.1",
-    "prop-types": "^15.6.0",
-    "react": "^15.3.0"
+    "fluent": "^0.10.0",
+    "html-react-parser": "^0.6.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-core": "^6.13.2",
-    "babel-loader": "^6.2.5",
-    "babel-polyfill": "^6.13.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-register": "^6.11.6",
-    "express": "^4.14.0",
-    "raw-loader": "^0.5.1",
-    "react-dom": "^15.3.0",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.14.1"
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "express": "^4.16.4",
+    "raw-loader": "^1.0.0",
+    "react-dom": "^16.7.0",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }

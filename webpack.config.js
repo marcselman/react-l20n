@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+	mode: 'development',
 	entry: [
 		'./client'
 	],
@@ -14,15 +15,15 @@ module.exports = {
 		publicPath: '/'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.ftl?$/,
-				loader: 'raw-loader',
+				use: 'raw-loader',
 				exclude: /node_modules/
 			},
 			{
 				test: /\.jsx?$/,
-				loader: 'babel-loader',
+				use: 'babel-loader',
 				exclude: /node_modules/
 			}
 		]

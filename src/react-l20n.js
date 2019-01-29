@@ -1,11 +1,12 @@
 // react-l20n.js
-// version: 0.0.17
+// version: 0.1.0
 // author: Marc Selman
 // license: MIT
 
 import React from 'react'
 import PropTypes from 'prop-types';
-import 'l20n'
+import { FluentBundle, ftl } from 'fluent';
+import parse from 'html-react-parser';
 
 const fsiCharacter = new RegExp(String.fromCharCode(8296), 'g')
 const psiCharacter = new RegExp(String.fromCharCode(8297), 'g')
@@ -23,7 +24,7 @@ class L20n
 		var ctx = this.contexts.get(locale);
 		if (!ctx)
 		{
-			ctx = new Intl.MessageContext(locale);
+			ctx = new FluentBundle(locale);
 			this.contexts.set(locale, ctx);
 		}
 
@@ -49,13 +50,13 @@ class L20n
 			}
 		}
 
-		var template = ctx.messages.get(key);
+		var template = ctx.getMessage(key);
 		if (template != undefined && typeof template === 'object') {
 			template = ctx.format(template, props);
 		}
 
 		if (template == undefined || typeof template === 'undefined') {
-			if (this.fallbackToDefault && ctx.lang != this.defaultLocale) {
+			if (this.fallbackToDefault && !ctx.locales.includes(this.defaultLocale)) {
 				return this.getRaw(key, props, this.defaultLocale);
 			}
 			return undefined;
@@ -77,7 +78,7 @@ class L20n
 	get(key, props, locale = this.defaultLocale)
 	{
 		var message = this.getRaw(key, props, locale)
-		return <span dangerouslySetInnerHTML={ { __html: message } } />
+		return <React.Fragment>{ parse(message) }</React.Fragment>
 	}
 	getContext(locale = this.defaultLocale)
 	{
@@ -121,17 +122,16 @@ export class L20nElement extends React.Component
 
 		var ctx = l20n.getContext(this.props.locale);
 		if (ctx) {
-			var template = ctx.messages.get(this.props.id);
-			if (template && template.traits) {
-				var attributes = template.traits.filter(t => t.key.ns == 'html').map(t => [t.key.name, t.val]);
-				attributes.forEach(a => {
+			var template = ctx.getMessage(this.props.id);
+			if (template && template.attrs) {
+				Object.entries(template.attrs).forEach(a => {
 					this.attrs[a[0]] = a[1];
 				})
 			}
 		}
 
 		return (
-			<this.props.renderAs ref={this.props.elementRef} {...this.attrs}>{ this.props.children }</this.props.renderAs>
+			<this.props.renderAs ref={ this.props.elementRef } { ...this.attrs }>{ this.props.children }</this.props.renderAs>
 		)
 	}
 }
