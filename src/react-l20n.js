@@ -78,6 +78,7 @@ class L20n
 	get(key, props, locale = this.defaultLocale)
 	{
 		var message = this.getRaw(key, props, locale)
+		if (typeof(message) != 'string') return undefined
 		return <React.Fragment>{ parse(message) }</React.Fragment>
 	}
 	getContext(locale = this.defaultLocale)

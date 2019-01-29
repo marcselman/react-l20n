@@ -122,6 +122,7 @@ function () {
     value: function get(key, props) {
       var locale = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.defaultLocale;
       var message = this.getRaw(key, props, locale);
+      if (typeof message != 'string') return undefined;
       return _react.default.createElement(_react.default.Fragment, null, (0, _htmlReactParser.default)(message));
     }
   }, {

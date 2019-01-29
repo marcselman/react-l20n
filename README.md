@@ -66,7 +66,7 @@ User require to load from an ftl file (see Universal support above).
 
 ### get(key, props, locale)
 Get a localized text by key.
-The returned value is a React span element.
+The returned value is a React Fragment element.
 HTML tags in your text will be rendered as HTML.
 Optionally pass some properties or an explicit locale.
 If no locale is given the default will be used. 
