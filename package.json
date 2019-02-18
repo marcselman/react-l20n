@@ -1,6 +1,6 @@
 {
   "name": "react-l20n-u",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Mozilla's L20n localization framework for React",
   "main": "./build/react-l20n.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/marcselman/react-l20n#readme",
   "dependencies": {
-    "fluent": "^0.10.0",
+    "fluent": "^0.11.0",
     "html-react-parser": "^0.6.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0"
