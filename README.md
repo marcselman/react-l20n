@@ -2,9 +2,6 @@
 Mozilla's L20n localization framework for React
 Universal (isomorphic) works in Node (server) and Webpack (client).
 
-The l20n module dependancy uses default parameter value so using Node v6+ is recommended.
-If you see an error like `SyntaxError: Unexpected token =` try updating to Node v6+. 
-
 ## Getting Started:
 
 ### Install it from [npm](http://www.npmjs.org):
@@ -60,9 +57,11 @@ require.extensions['.ftl'] = function(module, filename) {
 
 ## Methods
 
-### load(locale, ftl)
+### load(locale, ftl, options)
 Load localized text strings from an ftl string.
-User require to load from an ftl file (see Universal support above). 
+Use require to load from an ftl file (see Universal support above). 
+Valid options:
+- allowOverrides: controls whether it's allowed to override existing mesages or terms with new values. Default: true.
 
 ### get(key, props, locale)
 Get a localized text by key.

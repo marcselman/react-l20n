@@ -60,6 +60,9 @@ function () {
   _createClass(L20n, [{
     key: "load",
     value: function load(locale, ftl) {
+      var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
+        allowOverrides: true
+      };
       var ctx = this.contexts.get(locale);
 
       if (!ctx) {
@@ -67,7 +70,9 @@ function () {
         this.contexts.set(locale, ctx);
       }
 
-      var errors = ctx.addMessages(ftl);
+      var errors = ctx.addMessages(ftl, {
+        allowOverrides: options.allowOverrides
+      });
 
       if (errors.length) {
         console.log(errors);

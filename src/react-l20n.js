@@ -1,8 +1,3 @@
-// react-l20n.js
-// version: 0.1.0
-// author: Marc Selman
-// license: MIT
-
 import React from 'react'
 import PropTypes from 'prop-types';
 import { FluentBundle, ftl } from 'fluent';
@@ -19,7 +14,7 @@ class L20n
 		this.defaultLocale = 'en';
 		this.fallbackToDefault = true;
 	}
-	load(locale, ftl)
+	load(locale, ftl, options = { allowOverrides: true })
 	{
 		var ctx = this.contexts.get(locale);
 		if (!ctx)
@@ -28,7 +23,9 @@ class L20n
 			this.contexts.set(locale, ctx);
 		}
 
-		const errors = ctx.addMessages(ftl);
+		const errors = ctx.addMessages(ftl, {
+			allowOverrides: options.allowOverrides
+		});
 		if (errors.length)
 		{
 			console.log(errors);
